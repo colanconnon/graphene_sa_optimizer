@@ -48,6 +48,6 @@ def get_related_fetches_for_model(model, graphql_ast):
     return joined_loads
 
 
-def get_optimized_joins(model, graphql_info):
+def get_optimized_options(model, graphql_info):
     base_ast = graphql_info.field_asts[0]
     return [joinedload(name) for name in get_related_fetches_for_model(model, base_ast)]

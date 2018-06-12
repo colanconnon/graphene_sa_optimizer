@@ -1,1 +1,1 @@
-from .optimize import get_optimized_joins
+from .optimize import get_optimized_options

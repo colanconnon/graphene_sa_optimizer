@@ -7,14 +7,14 @@ inspired by https://github.com/tfoxy/graphene-django-optimizer
 Uses graphql schema to generate efficient database access using sql alchemy joins
 ## How to use 
 ```python
-from graphene_sa_optimizer import get_optimized_joins
+from graphene_sa_optimizer import get_optimized_options
 
 # This will generate all our options
 # to optimize this query
-get_optimized_joins(ModelClass, info)
+get_optimized_options(ModelClass, info)
 
 # pass those optimizations into our query
-query.options(*get_optimized_joins)
+query.options(*get_optimized_options)
 ```
 ## Setup for dev
 * Install `pipenv`
