@@ -43,7 +43,7 @@ class DBStatementCounter(object):
             self.count += 1
 
 
-def create_execution_context(schema, request_string):
+def create_execution_context(schema, request_string, variable_values=None):
     source = Source(request_string, "GraphQL request")
     document_ast = parse(source)
     return ExecutionContext(
@@ -51,7 +51,7 @@ def create_execution_context(schema, request_string):
         document_ast,
         root_value=None,
         context_value=None,
-        variable_values=None,
+        variable_values=variable_values,
         operation_name=None,
         executor=None,
         middleware=None,
@@ -72,8 +72,8 @@ def get_field_asts_from_execution_context(exe_context):
     return field_asts
 
 
-def create_resolve_info(schema, request_string):
-    exe_context = create_execution_context(schema, request_string)
+def create_resolve_info(schema, request_string, variable_values=None):
+    exe_context = create_execution_context(schema, request_string, variable_values)
     parent_type = get_operation_root_type(schema, exe_context.operation)
     field_asts = get_field_asts_from_execution_context(exe_context)
 

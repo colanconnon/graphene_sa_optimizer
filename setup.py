@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name='graphene_sa_optimizer',
-    version='0.0.2',
+    version='0.0.4',
     author='Colan Connon',
     author_email='cconnon11@gmail.com',
     description='Use GraphQL and SQL Alchemy for efficient database access.',
