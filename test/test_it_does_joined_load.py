@@ -8,7 +8,7 @@ from graphql_app import create_app, db
 from graphql_app.schema import schema
 from graphql_app.models import Author, Book, Reader
 from .utils import create_resolve_info, get_query
-from graphene_sa_optimizer import get_optimized_joins
+from graphene_sa_optimizer import get_optimized_options
 from sqlalchemy.orm import joinedload, load_only
 
 
@@ -56,7 +56,7 @@ def test_it_loads_related_fields_for_author(client, app):
         reader.books.append(book)
         reader.save()
         info = create_resolve_info(schema, query)
-        result_q = Author.query.options(*get_optimized_joins(Author, info))
+        result_q = Author.query.options(*get_optimized_options(Author, info))
         expected_q = Author.query.options(
             joinedload("books").load_only("id", "isbn"),
             joinedload("books.readers").load_only("id"),
@@ -93,7 +93,7 @@ def test_it_loads_related_fields_for_books(client, app):
         reader.books.append(book)
         reader.save()
         info = create_resolve_info(schema, query)
-        result_q = Book.query.options(*get_optimized_joins(Book, info))
+        result_q = Book.query.options(*get_optimized_options(Book, info))
         expected_q = Book.query.options(
             joinedload("author").load_only("id", "last_name"),
             joinedload("author.books").load_only("id", "isbn"),
