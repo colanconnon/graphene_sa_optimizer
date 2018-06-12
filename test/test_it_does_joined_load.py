@@ -101,3 +101,36 @@ def test_it_loads_related_fields_for_books(client, app):
             load_only("id", "isbn"),
         )
         assert str(expected_q) == str(result_q)
+
+def test_it_loads_one_author(client, app):
+    query = """
+    query getAuthor($id: Int!){
+        author(id: $id){
+            id
+            firstName
+            books
+            {
+                id
+                isbn
+                readers {
+                    id
+                }
+            }
+        }
+    }
+    """
+    with app.app_context():
+        author = Author.create(first_name="test1", last_name="test2")
+        book = Book.create(title="test", isbn="r123213", author=author)
+        reader = Reader.create(first_name="test", last_name="test2")
+        reader.books.append(book)
+        reader.save()
+        info = create_resolve_info(schema, query, {'id': author.id})
+        result_q = Author.query.options(*get_optimized_options(Author, info))
+        expected_q = Author.query.options(
+            joinedload("books").load_only("id", "isbn"),
+            joinedload("books.readers").load_only("id"),
+            load_only("id", "first_name"),
+        )
+        assert str(expected_q) == str(result_q)
+        assert expected_q.get(author.id).first_name == result_q.get(author.id).first_name

@@ -11,8 +11,12 @@ from sqlalchemy.orm import joinedload
 class Query(graphene.ObjectType):
 
     authors = graphene.List(AuthorSQLType)
+    author = graphene.Field(AuthorSQLType, id=graphene.Int())
 
     books = graphene.List(BookSQLType)
+
+    def resolve_authro(self, info, id):
+        return Author.query.options(*get_optimized_options(Author, info)).get(id)
 
     def resolve_authors(self, info):
         return Author.query.options(*get_optimized_options(Author, info))

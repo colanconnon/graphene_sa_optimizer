@@ -59,6 +59,6 @@ def get_optimized_options(model, graphql_info):
     base_ast = graphql_info.field_asts[0]
     joins, fields = get_related_fetches_for_model(model, base_ast)
     return [
-        joinedload(name).load_only(*fields[model.__tablename__ + "." + name])
+        joinedload(name).load_only(*fields[base_ast.name.value + "." + name])
         for name in joins
-    ] + [load_only(*fields[model.__tablename__])]
+    ] + [load_only(*fields[base_ast.name.value])]
