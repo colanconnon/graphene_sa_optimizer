@@ -33,12 +33,11 @@ def get_related_fetches_for_model(model, graphql_ast):
         selection_field = model_fields.get(selection_name, None)
         try:
             if not isinstance(selection_field, RelationshipProperty):
-                if model.__tablename__ not in fields:
-                    fields[model.__tablename__] = []
-                fields[model.__tablename__].append(selection_field.key)
+                if graphql_ast.name.value not in fields:
+                    fields[graphql_ast.name.value] = []
+                fields[graphql_ast.name.value].append(selection_field.key)
                 continue
         except Exception as e:
-            print(e)
             continue
         joined_loads.append(selection_field.key)
         nested_relateds, nested_fields = get_related_fetches_for_model(
@@ -49,7 +48,7 @@ def get_related_fetches_for_model(model, graphql_ast):
                 joined_loads.append(full_name)
         if nested_fields:
             for key, value in nested_fields.items():
-                full_name = '{0}.{1}'.format(model.__tablename__, key)
+                full_name = '{0}.{1}'.format(graphql_ast.name.value, key)
                 fields[full_name] = value
     return joined_loads, fields
 
