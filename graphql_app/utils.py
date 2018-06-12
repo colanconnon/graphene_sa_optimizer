@@ -6,14 +6,15 @@ from sqlalchemy.orm.properties import RelationshipProperty
 
 def model_fields_as_dict(model):
     return dict((column.key, column) for column in inspect(model).attrs)
-    
+
+
 def find_model_selections(ast):
     selections = ast.selection_set.selections
 
     for selection in selections:
-        if selection.name.value == 'edges':
+        if selection.name.value == "edges":
             for sub_selection in selection.selection_set.selections:
-                if sub_selection.name.value == 'node':
+                if sub_selection.name.value == "node":
                     return sub_selection.selection_set.selections
 
     return selections
@@ -37,15 +38,16 @@ def get_related_fetches_for_model(model, graphql_ast):
             continue
         joined_loads.append(selection_field.key)
         nested_relateds = get_related_fetches_for_model(
-            selection_field.mapper.class_, selection)
+            selection_field.mapper.class_, selection
+        )
 
         if nested_relateds:
             for related in nested_relateds:
-                full_name = '{0}.{1}'.format(selection_field.key, related)
+                full_name = "{0}.{1}".format(selection_field.key, related)
                 joined_loads.append(full_name)
     return joined_loads
 
 
 def get_optimized_joins(model, graphql_info):
     base_ast = graphql_info.field_asts[0]
-    return [joinedload(name) for name in get_related_fetches_for_model(model, base_ast)] 
+    return [joinedload(name) for name in get_related_fetches_for_model(model, base_ast)]

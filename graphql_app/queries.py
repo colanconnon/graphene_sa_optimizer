@@ -8,7 +8,6 @@ from flask import request
 from sqlalchemy.orm import joinedload
 
 
-
 class Query(graphene.ObjectType):
 
     authors = graphene.List(AuthorSQLType)
