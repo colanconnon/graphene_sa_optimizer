@@ -6,14 +6,15 @@ from sqlalchemy.orm.properties import RelationshipProperty
 
 def model_fields_as_dict(model):
     return dict((column.key, column) for column in inspect(model).attrs)
-    
+
+
 def find_model_selections(ast):
     selections = ast.selection_set.selections
 
     for selection in selections:
-        if selection.name.value == 'edges':
+        if selection.name.value == "edges":
             for sub_selection in selection.selection_set.selections:
-                if sub_selection.name.value == 'node':
+                if sub_selection.name.value == "node":
                     return sub_selection.selection_set.selections
 
     return selections
@@ -41,14 +42,15 @@ def get_related_fetches_for_model(model, graphql_ast):
             continue
         joined_loads.append(selection_field.key)
         nested_relateds, nested_fields = get_related_fetches_for_model(
-            selection_field.mapper.class_, selection)
+            selection_field.mapper.class_, selection
+        )
         if nested_relateds:
             for related in nested_relateds:
-                full_name = '{0}.{1}'.format(selection_field.key, related)
+                full_name = "{0}.{1}".format(selection_field.key, related)
                 joined_loads.append(full_name)
         if nested_fields:
             for key, value in nested_fields.items():
-                full_name = '{0}.{1}'.format(graphql_ast.name.value, key)
+                full_name = "{0}.{1}".format(graphql_ast.name.value, key)
                 fields[full_name] = value
     return joined_loads, fields
 
@@ -56,4 +58,7 @@ def get_related_fetches_for_model(model, graphql_ast):
 def get_optimized_joins(model, graphql_info):
     base_ast = graphql_info.field_asts[0]
     joins, fields = get_related_fetches_for_model(model, base_ast)
-    return [joinedload(name).load_only(*fields[model.__tablename__ + '.' + name]) for name in joins] + [load_only(*fields[model.__tablename__])]
+    return [
+        joinedload(name).load_only(*fields[model.__tablename__ + "." + name])
+        for name in joins
+    ] + [load_only(*fields[model.__tablename__])]

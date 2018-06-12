@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "04ea8d3199785adf2380ea6868d05e6f653c770dedd2bee553f20014ec607777"
+            "sha256": "b2a8fe87b1f884acc637d04fe03373015eb8de19ecd77f9c63d056173cdc5d04"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -30,6 +30,13 @@
             ],
             "index": "pypi",
             "version": "==3.0.0"
+        },
+        "appdirs": {
+            "hashes": [
+                "sha256:9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92",
+                "sha256:d8b24664561d0d34ddfaec54636d502d7cea6e29c3eaf68f3df6180863e2166e"
+            ],
+            "version": "==1.4.3"
         },
         "atomicwrites": {
             "hashes": [
@@ -79,6 +86,14 @@
             ],
             "index": "pypi",
             "version": "==3.1.4"
+        },
+        "black": {
+            "hashes": [
+                "sha256:3efe92eafbde15f8ac06478de11cfb84e47504896ccdde64507e751d2f91ec3a",
+                "sha256:fc26c4ab28c541fb824f59fa83d5702f75829495d5a1dee603b29bc4fbe79095"
+            ],
+            "index": "pypi",
+            "version": "==18.6b2"
         },
         "cffi": {
             "hashes": [
@@ -138,10 +153,10 @@
         },
         "flask-graphql": {
             "hashes": [
-                "sha256:84be72d6b0f81dc0fb9d2177fc0222a885f85d84da4ce755972ca16be413b7bc"
+                "sha256:0e54ed00e1a2c5ccd957a024ecd1932a212efe879f840328a44c4fea3b033c98"
             ],
             "index": "pypi",
-            "version": "==1.4.1"
+            "version": "==2.0rc0"
         },
         "flask-jwt-extended": {
             "hashes": [
@@ -191,11 +206,11 @@
         },
         "graphql-core": {
             "hashes": [
-                "sha256:4830699be53f9154273fa15726fc8b0c90bc22bbb8fc7c932586503b3cb9330e",
-                "sha256:539355351343dede3ecb771e0d273a1b72405cb6d64f45bb8f92ecc4d7109af0"
+                "sha256:7715b172e10fa67adbe645f3c803d888cdb68dc15208932fc85bb265f353b03b",
+                "sha256:f3bbfb9cbc1fb67211527118aecb6dd61335f481bc03e96fe0fea540b362fb02"
             ],
             "index": "pypi",
-            "version": "==2.0"
+            "version": "==2.1rc1"
         },
         "graphql-relay": {
             "hashes": [
@@ -203,6 +218,13 @@
             ],
             "index": "pypi",
             "version": "==0.4.5"
+        },
+        "graphql-server-core": {
+            "hashes": [
+                "sha256:0cfcb72ceb8173c4d3b3b6eac44b02282bfcbb654117056548a6df5702d97d07",
+                "sha256:c0a3b7768b3319236d7bf1ec182a42d1114cd45349868f1d70eae0b5fc9c61c0"
+            ],
+            "version": "==1.1rc0"
         },
         "greenlet": {
             "hashes": [
@@ -397,6 +419,12 @@
             ],
             "index": "pypi",
             "version": "==1.2.8"
+        },
+        "toml": {
+            "hashes": [
+                "sha256:8e86bd6ce8cc11b9620cb637466453d94f5d57ad86f17e98a98d1f73e3baab2d"
+            ],
+            "version": "==0.9.4"
         },
         "typing": {
             "hashes": [
