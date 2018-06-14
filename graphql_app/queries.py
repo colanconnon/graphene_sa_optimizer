@@ -6,6 +6,7 @@ from flask_jwt_extended import get_jwt_identity
 from graphql.utils.ast_to_dict import ast_to_dict
 from flask import request
 from sqlalchemy.orm import joinedload
+from graphene_sa_optimizer import get_optimized_options
 
 
 class Query(graphene.ObjectType):
@@ -15,7 +16,8 @@ class Query(graphene.ObjectType):
 
     books = graphene.List(BookSQLType)
 
-    def resolve_authro(self, info, id):
+    def resolve_author(self, info, id):
+        print(Author.query.options(*get_optimized_options(Author, info)).get(id))
         return Author.query.options(*get_optimized_options(Author, info)).get(id)
 
     def resolve_authors(self, info):
