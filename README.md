@@ -4,6 +4,8 @@ inspired by https://github.com/tfoxy/graphene-django-optimizer
 
 [![Build Status](https://travis-ci.org/colanconnon/graphene_sa_optimizer.svg?branch=master)](https://travis-ci.org/colanconnon/graphene_sa_optimizer)
 
+[![PyPI version](https://badge.fury.io/py/graphene-sa-optimizer.svg)](https://badge.fury.io/py/graphene-sa-optimizer)
+
 Uses graphql schema to generate efficient database access using sql alchemy joins
 ## install
 ```pip install graphene_sa_optimizer```
