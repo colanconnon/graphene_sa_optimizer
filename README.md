@@ -16,7 +16,7 @@ from graphene_sa_optimizer import get_optimized_options
 # to optimize this query
 
 # pass those optimizations into our query
-query.options(*get_optimized_options(ModelClass, info)
+query.options(*get_optimized_options(ModelClass, info))
 ```
 ## Setup for dev
 * Install `pipenv`
