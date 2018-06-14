@@ -17,7 +17,6 @@ class Query(graphene.ObjectType):
     books = graphene.List(BookSQLType)
 
     def resolve_author(self, info, id):
-        print(Author.query.options(*get_optimized_options(Author, info)).get(id))
         return Author.query.options(*get_optimized_options(Author, info)).get(id)
 
     def resolve_authors(self, info):
