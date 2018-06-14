@@ -13,8 +13,7 @@ Uses graphql schema to generate efficient database access using sql alchemy join
 from graphene_sa_optimizer import get_optimized_options
 
 # This will generate all our options
-# to optimize this query
-
+# to optimize this query and
 # pass those optimizations into our query
 query.options(*get_optimized_options(ModelClass, info))
 ```
