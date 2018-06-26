@@ -10,7 +10,6 @@ from graphql_app.models import Author, Book, Reader
 from .utils import create_resolve_info, get_query
 from graphene_sa_optimizer import get_optimized_options
 from sqlalchemy.orm import joinedload, load_only
-import sqltap
 
 
 @pytest.fixture
