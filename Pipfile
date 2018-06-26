@@ -43,6 +43,7 @@ SQLAlchemy = "*"
 Werkzeug = "*"
 pytest = "*"
 black = "*"
+sqltap = "*"
 
 [dev-packages]
 

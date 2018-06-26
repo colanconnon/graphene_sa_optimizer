@@ -17,10 +17,10 @@ class Query(graphene.ObjectType):
     books = graphene.List(BookSQLType)
 
     def resolve_author(self, info, id):
-        return Author.query.options(*get_optimized_options(Author, info)).get(id)
+        return Author.query.options(*get_optimized_options(Author, info)).filter_by(id=id).first()
 
     def resolve_authors(self, info):
-        return Author.query.options(*get_optimized_options(Author, info))
+        return Author.query.options(*get_optimized_options(Author, info)).all()
 
     def resolve_books(self, info):
         return Book.query.options(*get_optimized_options(Book, info))

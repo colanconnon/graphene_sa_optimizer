@@ -14,6 +14,6 @@ class Config(object):
     DEBUG_TB_PROFILER_ENABLE = True
     SQLALCHEMY_DATABASE_URI = "sqlite:///{0}".format(DB_PATH)
     DEBUG_TB_ENABLED = True
-    SQLALCHEMY_RECORD_QUERIES = True
+    # SQLALCHEMY_RECORD_QUERIES = True
     SECRET_KEY = "secret-key"  # TODO: Change me
     SQLALCHEMY_TRACK_MODIFICATIONS = False
